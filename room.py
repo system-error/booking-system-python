@@ -41,8 +41,8 @@ class Room:
 
 
 # t = Room()
-# t.displayTheRooms()
-# for x in t.roomsAndBeds['room1']['startDateReserved']:
+
+# for x in t.roomsAndBeds:
 #     print(x)
 #     for y in x.split("-"):
 #         print(int(y))

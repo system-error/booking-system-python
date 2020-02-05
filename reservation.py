@@ -17,6 +17,8 @@ class Reservation:
 
     def makeReservation(self,roomSelected):
         
+        theRoom = "room"+str(roomSelected)
+        print(theRoom)
         startDate = []
         endDate = []
         counter = 0
@@ -56,7 +58,7 @@ class Reservation:
             else:
                 endDate.append(self.year)
             counter +=1    
-        self.availability(startDate,endDate,roomSelected)
+        self.availability(startDate,endDate,theRoom)
         
 
 
@@ -80,7 +82,9 @@ class Reservation:
             print("=================")
             print(f"The price for this room is: {Room.roomsAndBeds[room]['price']} €")
             print("")
-        roomSelected = input("Select the room that you need")     
+        roomSelected = input(f"Select the room that you need from 1 up to {len(room)-1}: ")
+        print("You have selected the room",roomSelected)
+        self.makeReservation(roomSelected)     
 
 
     def greetings(self):
@@ -103,7 +107,7 @@ class Reservation:
 r = Room()
 
 re = Reservation()
-re.greetings()
+re.makeReservation(1)
 
 # startDate,endDate = re.makeReservation()
 
