@@ -18,7 +18,6 @@ class Reservation:
         start = "start"
         end = "end"
         
-
         print("The reserved days for this room are: ")
 
         for x in range(len(r.roomsAndBeds[theRoom]['startDateReserved'])):
@@ -27,8 +26,6 @@ class Reservation:
             print("")
             print("Please choose the booking dates")
 
-        # for room in r.
-        
         while counter<2:
 
             if (counter<1):
@@ -69,8 +66,6 @@ class Reservation:
 
     def availability(self,startDates,endDates,room,totalPrice,reservationDays):
         
-        # print(Room.roomsAndBeds[room])
-        # test=len(Room.roomsAndBeds)
         for x in range(0, len(Room.roomsAndBeds)):
             for y in range (len(Room.startDateReserved[x])):
                 if(((startDates[0] <= Room.startDateReserved[x][y][0]) and ((endDates[0] <= Room.endDateReserved[x][y][0]) or (endDates[0] > Room.endDateReserved[x][y][0])) and (Room.startDateReserved[x][y][1] == startDates[1]))
@@ -110,24 +105,3 @@ class Reservation:
 
 
 r = Room()
-
-# re = Reservation()
-# re.makeReservation(1)
-
-# startDate,endDate = re.makeReservation()
-
-# re.availability(startDate,endDate,r.roomsAndBeds['room1'])
-
-
-# ro = Room()
-
-
-
-
-
-
-
-        
-         
-
-    

@@ -35,14 +35,3 @@ class Room:
         for room in self.roomsAndBeds:            
             self.startDateReserved.append([[int(y) for y in x.split("-")]for x in self.roomsAndBeds[room]['startDateReserved']])
             self.endDateReserved.append([[int(y) for y in x.split("-")]for x in self.roomsAndBeds[room]['endDateReserved']])
-
-    
-
-
-
-# t = Room()
-
-# for x in t.roomsAndBeds:
-#     print(x)
-#     for y in t.roomsAndBeds[x]['startDateReserved']:
-#         print(y)
