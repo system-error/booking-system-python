@@ -5,25 +5,29 @@ class Reservation:
             11,12,13,14,15,16,17,18,19,20,
             21,22,23,24,25,26,27,28,29,30,31]
     months = [1,2,3,4,5,6,7,8,9,10,11,12]
-    year = 2020
-    numberOfDays=1
-
-    # def __init__(self):
-    #     self.days
-    #     self.months
-    #     self.year
-    #     self.numberOfDays
+    year = 2020 
     
-
     def makeReservation(self,roomSelected):
         
         theRoom = "room"+str(roomSelected)
+        price = 0 
         print(theRoom)
         startDate = []
         endDate = []
         counter = 0
         start = "start"
         end = "end"
+        
+
+        print("The reserved days for this room are: ")
+
+        for x in range(len(r.roomsAndBeds[theRoom]['startDateReserved'])):
+            print(f"{x+1}. From: {r.roomsAndBeds[theRoom]['startDateReserved'][x]}")
+            print(f"   To: {r.roomsAndBeds[theRoom]['endDateReserved'][x]}")
+            print("")
+            print("Please choose the booking dates")
+
+        # for room in r.
         
         while counter<2:
 
@@ -58,18 +62,26 @@ class Reservation:
             else:
                 endDate.append(self.year)
             counter +=1    
-        self.availability(startDate,endDate,theRoom)
+
+        reservationDays = abs(startDate[0] - endDate[0])
+        price = reservationDays * Room.roomsAndBeds[theRoom]['price']  
+        self.availability(startDate,endDate,theRoom,price,reservationDays)
+
+    def availability(self,startDates,endDates,room,totalPrice,reservationDays):
         
-
-
-    def availability(self,startDates,endDates,room):
         # print(Room.roomsAndBeds[room])
         # test=len(Room.roomsAndBeds)
         for x in range(0, len(Room.roomsAndBeds)):
             for y in range (len(Room.startDateReserved[x])):
-                if(((Room.startDateReserved[x][y][0] < startDates[0]) and (Room.startDateReserved[x][y][1] == startDates[1])) 
-                    or ((Room.endDateReserved[x][y][0] < endDates[0]) and (Room.endDateReserved[x][y][1] == endDates[1]))) :
-                    print("test")
+                if(((startDates[0] <= Room.startDateReserved[x][y][0]) and ((endDates[0] <= Room.endDateReserved[x][y][0]) or (endDates[0] > Room.endDateReserved[x][y][0])) and (Room.startDateReserved[x][y][1] == startDates[1]))
+                or ((endDates[0] >= Room.startDateReserved[x][y][0]) and (endDates[0] <= Room.endDateReserved[x][y][0]) and (Room.endDateReserved[x][y][1] == endDates[1])) ):
+                    print("This dates are already reserved please give us another date")
+                    self.makeReservation(room.replace('room',''))
+                
+        print("Thanks the room is booked!")
+        print(f"The total price of booking is {totalPrice} and the days you are booked are {reservationDays}")
+        Room.startDateReserved.append(startDates)
+        Room.endDateReserved.append(endDates)            
 
 
     def displayTheRooms(self):
@@ -77,7 +89,6 @@ class Reservation:
         print("")
         for room in Room.roomsAndBeds:
             print(f"====== {room}  ======")
-
             print(f"The number of beds for this room are: {Room.roomsAndBeds[room]['beds']}")
             print("=================")
             print(f"The price for this room is: {Room.roomsAndBeds[room]['price']} €")
@@ -85,7 +96,6 @@ class Reservation:
         roomSelected = input(f"Select the room that you need from 1 up to {len(room)-1}: ")
         print("You have selected the room",roomSelected)
         self.makeReservation(roomSelected)     
-
 
     def greetings(self):
         print("Welcome to our booking system")
@@ -96,18 +106,13 @@ class Reservation:
         if(inputValue == 1):
             self.displayTheRooms()
         else:
-            exit()            
+            exit("Good Bye")            
 
-
-
-# re = Reservation()
-
-# startDate = re.makeReservation()
 
 r = Room()
 
-re = Reservation()
-re.makeReservation(1)
+# re = Reservation()
+# re.makeReservation(1)
 
 # startDate,endDate = re.makeReservation()
 

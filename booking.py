@@ -3,7 +3,7 @@ from reservation import Reservation
 
 guest1 = Reservation()
 
-guest1.displayTheRooms()
+guest1.greetings()
 
 
 # guest1 = r()
